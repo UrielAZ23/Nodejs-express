@@ -8,16 +8,20 @@ router.get('/filter',(req,res)=>{
   res.send('yo soy un filter')
 })
 
-router.get('/:id',async(req,res)=>{
+router.get('/:id',async(req,res,next)=>{
 
+  try {
     const {id} = req.params;
     //  const id= req.params.id;
 
     const produc = await service.findOne(id);
     res.status(200).json({
       produc
-    }
-    )
+    })
+    
+  } catch (error) {
+    next(error)
+  }
 
 
 

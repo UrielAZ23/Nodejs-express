@@ -41,10 +41,12 @@ class ProductService{
   }
 
   async findOne(id){
+    const name= this.getGlobal();
     return this.products.find(item=> item.id===id);
 
   }
   async update(id,changes){
+
     const index =this.products.findIndex(item=> item.id===id);
     if(index===-1){
       throw new Error('product not found')

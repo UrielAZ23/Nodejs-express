@@ -3,6 +3,7 @@
 
 const express = require("express")
 const routerApi = require("./routes")
+const {logErrors, errorHandler} = require("./middleweare/errorhandles")
 const {faker} = require("@faker-js/faker")
 const app = express();
 app.use(express.json());
@@ -17,7 +18,8 @@ app.get("/nueva",(req,res)=>{
 
 routerApi(app)
 
-
+app.use(logErrors);
+app.use(errorHandler);
 
 app.listen(port,()=>{
     console.log("mi port http://localhost:"+port)
